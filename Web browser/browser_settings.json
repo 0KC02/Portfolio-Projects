@@ -1,0 +1,8 @@
+{
+  "home_page": "https://www.google.com",
+  "search_engine": "Google",
+  "theme": "light",
+  "font_size": 10,
+  "max_history": 1000,
+  "max_bookmarks": 500
+}

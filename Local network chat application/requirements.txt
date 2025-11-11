@@ -1,0 +1,14 @@
+# No external dependencies required
+# This application uses only Python standard library:
+# - socket (for network communication)
+# - threading (for concurrent client handling)
+# - tkinter (for GUI - comes with Python on most systems)
+# - json (for message serialization)
+# - datetime (for timestamps)
+
+# If tkinter is not available on your system:
+# On Linux (Debian/Ubuntu): sudo apt-get install python3-tk
+# On Linux (Fedora): sudo dnf install python3-tkinter
+# On macOS: Usually pre-installed with Python
+# On Windows: Usually pre-installed with Python
+
