@@ -3,6 +3,25 @@ import threading
 import json
 from datetime import datetime
 
+def get_local_ip():
+    """Get the local IP address of this machine"""
+    try:
+        # Connect to a remote address to determine local IP
+        # This doesn't actually send data, just determines the route
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.settimeout(0)
+        try:
+            # Connect to a non-routable address (doesn't actually connect)
+            s.connect(('10.254.254.254', 1))
+            ip = s.getsockname()[0]
+        except Exception:
+            ip = '127.0.0.1'
+        finally:
+            s.close()
+        return ip
+    except Exception:
+        return '127.0.0.1'
+
 class ChatServer:
     def __init__(self, host='0.0.0.0', port=5555):
         self.host = host
@@ -15,8 +34,11 @@ class ChatServer:
     def start(self):
         self.socket.bind((self.host, self.port))
         self.socket.listen()
+        local_ip = get_local_ip()
         print(f"Server started on {self.host}:{self.port}")
+        print(f"Local IP address: {local_ip}:{self.port}")
         print("Waiting for clients...")
+        print(f"Connect using: {local_ip}:{self.port} (from other devices on your network)")
         
         while True:
             client_socket, address = self.socket.accept()
